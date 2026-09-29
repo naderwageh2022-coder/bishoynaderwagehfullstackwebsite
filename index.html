@@ -1,0 +1,1572 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#05070d">
+<meta name="description" content="Bishoy Nader - Full Stack Web Developer Portfolio">
+<title>Bishoy Nader | Full Stack Web Developer</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --bg:#05070d;
+    --bg2:#090d18;
+    --card:rgba(15,20,35,.74);
+    --text:#f5f7ff;
+    --muted:#8e99ae;
+    --line:rgba(255,255,255,.09);
+    --primary:#7c5cff;
+    --secondary:#00d9ff;
+    --green:#22c55e;
+    --shadow:0 25px 80px rgba(0,0,0,.4);
+}
+
+.light{
+    --bg:#f6f8fc;
+    --bg2:#eef2f8;
+    --card:rgba(255,255,255,.82);
+    --text:#10131c;
+    --muted:#647087;
+    --line:rgba(15,23,42,.1);
+    --shadow:0 25px 70px rgba(30,41,59,.12);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Inter",sans-serif;
+    background:
+        radial-gradient(circle at 10% 10%,rgba(124,92,255,.13),transparent 25%),
+        radial-gradient(circle at 90% 20%,rgba(0,217,255,.1),transparent 25%),
+        var(--bg);
+    color:var(--text);
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:.25;
+    background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+    background-size:45px 45px;
+    z-index:-2;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+button{
+    font-family:inherit;
+}
+
+.loader{
+    position:fixed;
+    inset:0;
+    background:#05070d;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    transition:.7s ease;
+}
+
+.loader.hide{
+    opacity:0;
+    visibility:hidden;
+}
+
+.loader-box{
+    text-align:center;
+}
+
+.loader-logo{
+    width:75px;
+    height:75px;
+    border:2px solid rgba(124,92,255,.2);
+    border-top-color:var(--primary);
+    border-right-color:var(--secondary);
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+    margin:auto;
+}
+
+.loader-text{
+    margin-top:20px;
+    font-family:"JetBrains Mono",monospace;
+    font-size:14px;
+    color:#fff;
+}
+
+@keyframes spin{
+    to{transform:rotate(360deg)}
+}
+
+.container{
+    width:min(1180px,92%);
+    margin:auto;
+}
+
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:1000;
+    backdrop-filter:blur(18px);
+    background:rgba(5,7,13,.72);
+    border-bottom:1px solid var(--line);
+}
+
+.light nav{
+    background:rgba(246,248,252,.78);
+}
+
+.nav-inner{
+    height:76px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:900;
+    font-size:20px;
+}
+
+.logo-icon{
+    width:38px;
+    height:38px;
+    display:grid;
+    place-items:center;
+    border-radius:12px;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    color:white;
+    box-shadow:0 0 30px rgba(124,92,255,.35);
+}
+
+.logo span{
+    font-family:"JetBrains Mono",monospace;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:28px;
+}
+
+.nav-links a{
+    color:var(--muted);
+    font-size:14px;
+    font-weight:600;
+    transition:.25s;
+}
+
+.nav-links a:hover{
+    color:var(--text);
+}
+
+.nav-actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.icon-btn{
+    width:42px;
+    height:42px;
+    border:1px solid var(--line);
+    background:var(--card);
+    color:var(--text);
+    border-radius:12px;
+    cursor:pointer;
+    display:grid;
+    place-items:center;
+    font-size:18px;
+    transition:.25s;
+}
+
+.icon-btn:hover{
+    transform:translateY(-2px);
+    border-color:rgba(124,92,255,.5);
+}
+
+.menu-btn{
+    display:none;
+}
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    padding:120px 0 80px;
+    position:relative;
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    gap:60px;
+    align-items:center;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    border:1px solid rgba(124,92,255,.25);
+    background:rgba(124,92,255,.08);
+    padding:9px 14px;
+    border-radius:100px;
+    color:#bdb1ff;
+    font-size:13px;
+    font-family:"JetBrains Mono",monospace;
+    margin-bottom:25px;
+}
+
+.badge-dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--green);
+    box-shadow:0 0 15px var(--green);
+}
+
+.hero h1{
+    font-size:clamp(48px,7vw,86px);
+    line-height:.98;
+    letter-spacing:-4px;
+    margin-bottom:25px;
+}
+
+.gradient{
+    background:linear-gradient(90deg,var(--primary),var(--secondary));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.hero p{
+    color:var(--muted);
+    max-width:650px;
+    font-size:18px;
+    line-height:1.8;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:14px;
+    margin-top:35px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:14px 21px;
+    border-radius:13px;
+    border:1px solid var(--line);
+    font-weight:700;
+    font-size:14px;
+    transition:.3s;
+    cursor:pointer;
+}
+
+.btn-primary{
+    background:linear-gradient(135deg,var(--primary),#5b43df);
+    color:white;
+    box-shadow:0 15px 35px rgba(124,92,255,.25);
+}
+
+.btn-secondary{
+    background:var(--card);
+    color:var(--text);
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+}
+
+.hero-code{
+    position:relative;
+}
+
+.code-card{
+    background:rgba(7,10,18,.9);
+    border:1px solid rgba(124,92,255,.22);
+    border-radius:24px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    transform:perspective(1000px) rotateY(-7deg) rotateX(3deg);
+}
+
+.code-top{
+    height:48px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:0 18px;
+    border-bottom:1px solid rgba(255,255,255,.07);
+}
+
+.circle{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:#34394a;
+}
+
+.code-body{
+    padding:25px;
+    font-family:"JetBrains Mono",monospace;
+    font-size:13px;
+    line-height:2;
+    color:#dce3f5;
+}
+
+.code-key{
+    color:#c792ea;
+}
+
+.code-name{
+    color:#82aaff;
+}
+
+.code-value{
+    color:#c3e88d;
+}
+
+.code-comment{
+    color:#63718b;
+}
+
+section{
+    padding:110px 0;
+}
+
+.section-head{
+    margin-bottom:45px;
+}
+
+.section-label{
+    color:var(--primary);
+    font-family:"JetBrains Mono",monospace;
+    font-size:13px;
+    margin-bottom:12px;
+}
+
+.section-title{
+    font-size:clamp(32px,5vw,48px);
+    letter-spacing:-2px;
+}
+
+.section-desc{
+    color:var(--muted);
+    max-width:650px;
+    line-height:1.8;
+    margin-top:14px;
+}
+
+.about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+}
+
+.card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:22px;
+    padding:30px;
+    box-shadow:var(--shadow);
+}
+
+.card h3{
+    margin-bottom:15px;
+    font-size:20px;
+}
+
+.card p{
+    color:var(--muted);
+    line-height:1.9;
+}
+
+.skills{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.skill{
+    padding:24px;
+    border:1px solid var(--line);
+    background:var(--card);
+    border-radius:18px;
+    transition:.3s;
+}
+
+.skill:hover{
+    transform:translateY(-5px);
+    border-color:rgba(124,92,255,.4);
+}
+
+.skill-icon{
+    width:45px;
+    height:45px;
+    display:grid;
+    place-items:center;
+    border-radius:13px;
+    background:rgba(124,92,255,.12);
+    margin-bottom:18px;
+    font-size:20px;
+}
+
+.skill h3{
+    font-size:16px;
+}
+
+.skill p{
+    color:var(--muted);
+    font-size:13px;
+    margin-top:7px;
+    line-height:1.6;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-top:25px;
+}
+
+.stat{
+    text-align:center;
+    padding:25px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:18px;
+}
+
+.stat-number{
+    font-size:35px;
+    font-weight:900;
+    background:linear-gradient(90deg,var(--primary),var(--secondary));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.stat p{
+    color:var(--muted);
+    font-size:13px;
+    margin-top:6px;
+}
+
+.certificates{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.certificate{
+    border:1px solid var(--line);
+    background:var(--card);
+    border-radius:20px;
+    overflow:hidden;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.certificate:hover{
+    transform:translateY(-7px);
+}
+
+.certificate img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    display:block;
+}
+
+.certificate-body{
+    padding:17px;
+}
+
+.certificate-body h3{
+    font-size:15px;
+}
+
+.certificate-body p{
+    color:var(--muted);
+    font-size:12px;
+    margin-top:6px;
+}
+
+.projects{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:22px;
+}
+
+.project-link{
+    display:block;
+}
+
+.project{
+    height:100%;
+    overflow:hidden;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:22px;
+    transition:.35s;
+}
+
+.project:hover{
+    transform:translateY(-8px);
+    border-color:rgba(124,92,255,.45);
+    box-shadow:0 25px 60px rgba(0,0,0,.22);
+}
+
+.project-visual{
+    height:230px;
+    display:grid;
+    place-items:center;
+    background:
+        radial-gradient(circle at center,rgba(124,92,255,.2),transparent 45%),
+        linear-gradient(135deg,#0b1020,#080b14);
+    position:relative;
+    overflow:hidden;
+}
+
+.project-visual::before{
+    content:"";
+    position:absolute;
+    width:200px;
+    height:200px;
+    border:1px solid rgba(0,217,255,.16);
+    border-radius:50%;
+    animation:pulse 4s ease-in-out infinite;
+}
+
+.project-visual::after{
+    content:"";
+    position:absolute;
+    width:130px;
+    height:130px;
+    border:1px solid rgba(124,92,255,.22);
+    border-radius:50%;
+}
+
+@keyframes pulse{
+    50%{
+        transform:scale(1.25);
+        opacity:.4;
+    }
+}
+
+.project-symbol{
+    width:90px;
+    height:90px;
+    display:grid;
+    place-items:center;
+    border-radius:25px;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    color:white;
+    font-size:28px;
+    font-family:"JetBrains Mono",monospace;
+    font-weight:700;
+    box-shadow:0 20px 60px rgba(124,92,255,.35);
+    z-index:2;
+}
+
+.project-body{
+    padding:25px;
+}
+
+.project-body h3{
+    font-size:21px;
+    margin-bottom:10px;
+}
+
+.project-body p{
+    color:var(--muted);
+    line-height:1.7;
+    font-size:14px;
+}
+
+.tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:20px;
+}
+
+.tag{
+    padding:6px 10px;
+    border-radius:8px;
+    font-size:11px;
+    color:#bdb1ff;
+    background:rgba(124,92,255,.1);
+    border:1px solid rgba(124,92,255,.16);
+    font-family:"JetBrains Mono",monospace;
+}
+
+.services{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.service{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:28px;
+    transition:.3s;
+}
+
+.service:hover{
+    transform:translateY(-5px);
+}
+
+.service-icon{
+    font-size:30px;
+    margin-bottom:20px;
+}
+
+.service h3{
+    margin-bottom:10px;
+}
+
+.service p{
+    color:var(--muted);
+    line-height:1.8;
+    font-size:14px;
+}
+
+.terminal{
+    background:#060911;
+    border:1px solid rgba(124,92,255,.2);
+    border-radius:22px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+}
+
+.terminal-head{
+    height:48px;
+    border-bottom:1px solid rgba(255,255,255,.07);
+    display:flex;
+    align-items:center;
+    padding:0 18px;
+    gap:8px;
+}
+
+.terminal-body{
+    padding:28px;
+    font-family:"JetBrains Mono",monospace;
+    line-height:2;
+    color:#c8d0df;
+    font-size:13px;
+}
+
+.prompt{
+    color:#22c55e;
+}
+
+.command{
+    color:#fff;
+}
+
+.contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+}
+
+.contact-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:22px;
+    padding:30px;
+}
+
+.contact-item{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:18px 0;
+    border-bottom:1px solid var(--line);
+}
+
+.contact-item:last-child{
+    border-bottom:0;
+}
+
+.contact-icon{
+    width:45px;
+    height:45px;
+    display:grid;
+    place-items:center;
+    border-radius:12px;
+    background:rgba(124,92,255,.12);
+}
+
+.contact-item small{
+    display:block;
+    color:var(--muted);
+    margin-bottom:3px;
+}
+
+.contact-item strong{
+    font-size:14px;
+}
+
+footer{
+    border-top:1px solid var(--line);
+    padding:30px 0;
+    color:var(--muted);
+    font-size:13px;
+}
+
+.footer-inner{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    align-items:center;
+}
+
+.whatsapp{
+    position:fixed;
+    right:24px;
+    bottom:24px;
+    width:58px;
+    height:58px;
+    display:grid;
+    place-items:center;
+    border-radius:50%;
+    background:#25D366;
+    color:white;
+    font-size:25px;
+    z-index:900;
+    box-shadow:0 15px 40px rgba(37,211,102,.3);
+    transition:.3s;
+}
+
+.whatsapp:hover{
+    transform:scale(1.08);
+}
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.85);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:25px;
+    z-index:5000;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal img{
+    max-width:95%;
+    max-height:90vh;
+    border-radius:15px;
+}
+
+.modal-close{
+    position:absolute;
+    top:25px;
+    right:25px;
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.2);
+    background:rgba(0,0,0,.4);
+    color:white;
+    font-size:22px;
+    cursor:pointer;
+}
+
+.reveal{
+    opacity:0;
+    transform:translateY(25px);
+    transition:opacity .8s ease,transform .8s ease;
+}
+
+.reveal.visible{
+    opacity:1;
+    transform:none;
+}
+
+@media(max-width:900px){
+    .nav-links{
+        position:absolute;
+        top:76px;
+        left:0;
+        right:0;
+        padding:20px;
+        background:var(--bg2);
+        border-bottom:1px solid var(--line);
+        display:none;
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .nav-links.open{
+        display:flex;
+    }
+
+    .menu-btn{
+        display:grid;
+    }
+
+    .hero-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero-code{
+        display:none;
+    }
+
+    .about-grid,
+    .contact-grid{
+        grid-template-columns:1fr;
+    }
+
+    .skills{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .certificates{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .services{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:650px){
+    .container{
+        width:min(92%,500px);
+    }
+
+    .nav-inner{
+        height:68px;
+    }
+
+    .nav-links{
+        top:68px;
+    }
+
+    .hero{
+        padding-top:105px;
+    }
+
+    .hero h1{
+        font-size:48px;
+        letter-spacing:-3px;
+    }
+
+    .hero p{
+        font-size:15px;
+    }
+
+    section{
+        padding:80px 0;
+    }
+
+    .skills,
+    .certificates,
+    .projects,
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .project-visual{
+        height:210px;
+    }
+
+    .certificate img{
+        height:250px;
+    }
+
+    .footer-inner{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .whatsapp{
+        right:18px;
+        bottom:18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="loader hide" id="loader">
+    <div class="loader-box">
+        <div class="loader-logo"></div>
+        <div class="loader-text">BISHOY NADER</div>
+    </div>
+</div>
+
+<nav>
+    <div class="container nav-inner">
+
+        <a href="#home" class="logo">
+            <div class="logo-icon">&lt;/&gt;</div>
+            <span>Bishoy Nader</span>
+        </a>
+
+        <div class="nav-links" id="navLinks">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#certificates">Certificates</a>
+            <a href="#projects">Projects</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+        </div>
+
+        <div class="nav-actions">
+            <button class="icon-btn" id="themeToggle">☾</button>
+            <button class="icon-btn menu-btn" id="menuBtn">☰</button>
+        </div>
+
+    </div>
+</nav>
+
+<main>
+
+<section class="hero" id="home">
+    <div class="container hero-grid">
+
+        <div class="reveal visible">
+            <div class="badge">
+                <span class="badge-dot"></span>
+                Available for new projects
+            </div>
+
+            <h1>
+                Hi, I'm
+                <span class="gradient">Bishoy Nader</span>
+            </h1>
+
+            <p>
+                Full Stack Web Developer building modern, responsive and
+                high-performance web applications with clean interfaces
+                and powerful functionality.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary">View My Projects</a>
+                <a href="#contact" class="btn btn-secondary">Contact Me</a>
+            </div>
+        </div>
+
+        <div class="hero-code reveal visible">
+            <div class="code-card">
+
+                <div class="code-top">
+                    <span class="circle"></span>
+                    <span class="circle"></span>
+                    <span class="circle"></span>
+                </div>
+
+                <div class="code-body">
+                    <div><span class="code-key">const</span> <span class="code-name">developer</span> = {</div>
+                    <div>&nbsp;&nbsp;<span class="code-name">name</span>: <span class="code-value">"Bishoy Nader"</span>,</div>
+                    <div>&nbsp;&nbsp;<span class="code-name">role</span>: <span class="code-value">"Full Stack Developer"</span>,</div>
+                    <div>&nbsp;&nbsp;<span class="code-name">frontend</span>: <span class="code-value">["HTML","CSS","JS"]</span>,</div>
+                    <div>&nbsp;&nbsp;<span class="code-name">backend</span>: <span class="code-value">["Node.js","PHP","Firebase"]</span>,</div>
+                    <div>&nbsp;&nbsp;<span class="code-name">passion</span>: <span class="code-value">"Building the Web"</span></div>
+                    <div>};</div>
+                    <br>
+                    <div><span class="code-comment">// Let's build something amazing.</span></div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section id="about">
+    <div class="container">
+
+        <div class="section-head reveal visible">
+            <div class="section-label">01 / ABOUT</div>
+            <h2 class="section-title">Building ideas into <span class="gradient">digital experiences.</span></h2>
+            <p class="section-desc">
+                I create websites and web applications focused on performance,
+                responsive design, usability and modern technology.
+            </p>
+        </div>
+
+        <div class="about-grid">
+
+            <div class="card reveal visible">
+                <h3>Who I Am</h3>
+                <p>
+                    I'm Bishoy Nader, a Full Stack Web Developer passionate
+                    about creating modern digital products. I enjoy turning
+                    ideas into functional and beautiful web experiences.
+                </p>
+            </div>
+
+            <div class="card reveal visible">
+                <h3>My Approach</h3>
+                <p>
+                    I focus on clean code, responsive interfaces, smooth
+                    interactions and practical solutions that work across
+                    phones, tablets and desktops.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section id="skills">
+    <div class="container">
+
+        <div class="section-head reveal visible">
+            <div class="section-label">02 / SKILLS</div>
+            <h2 class="section-title">My <span class="gradient">Technology Stack.</span></h2>
+        </div>
+
+        <div class="skills">
+
+            <div class="skill reveal visible">
+                <div class="skill-icon">🌐</div>
+                <h3>HTML5</h3>
+                <p>Semantic and structured web development.</p>
+            </div>
+
+            <div class="skill reveal visible">
+                <div class="skill-icon">🎨</div>
+                <h3>CSS3</h3>
+                <p>Responsive interfaces and modern visual design.</p>
+            </div>
+
+            <div class="skill reveal visible">
+                <div class="skill-icon">⚡</div>
+                <h3>JavaScript</h3>
+                <p>Interactive and dynamic web applications.</p>
+            </div>
+
+            <div class="skill reveal visible">
+                <div class="skill-icon">🔥</div>
+                <h3>Firebase</h3>
+                <p>Authentication, databases and cloud services.</p>
+            </div>
+
+            <div class="skill reveal visible">
+                <div class="skill-icon">🟢</div>
+                <h3>Node.js</h3>
+                <p>Backend services and server-side applications.</p>
+            </div>
+
+            <div class="skill reveal visible">
+                <div class="skill-icon">🐘</div>
+                <h3>PHP</h3>
+                <p>Dynamic backend web development.</p>
+            </div>
+
+            <div class="skill reveal visible">
+                <div class="skill-icon">📱</div>
+                <h3>Responsive Design</h3>
+                <p>Websites that work across every screen size.</p>
+            </div>
+
+            <div class="skill reveal visible">
+                <div class="skill-icon">🚀</div>
+                <h3>Full Stack</h3>
+                <p>Complete frontend and backend solutions.</p>
+            </div>
+
+        </div>
+
+        <div class="stats">
+
+            <div class="stat reveal visible">
+                <div class="stat-number" data-count="20">20+</div>
+                <p>Projects</p>
+            </div>
+
+            <div class="stat reveal visible">
+                <div class="stat-number" data-count="6">6+</div>
+                <p>Certificates</p>
+            </div>
+
+            <div class="stat reveal visible">
+                <div class="stat-number" data-count="100">100%</div>
+                <p>Responsive Design</p>
+            </div>
+
+            <div class="stat reveal visible">
+                <div class="stat-number" data-count="24">24+</div>
+                <p>Tech Skills</p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section id="certificates">
+    <div class="container">
+
+        <div class="section-head reveal visible">
+            <div class="section-label">03 / CERTIFICATES</div>
+            <h2 class="section-title">My <span class="gradient">Certificates.</span></h2>
+            <p class="section-desc">
+                Certifications and achievements in web development.
+            </p>
+        </div>
+
+        <div class="certificates">
+
+            <div class="certificate reveal visible">
+                <img src="https://i.postimg.cc/Hkws2pFT/530773597-122146686566744101-7834814703143638620-n.jpg" alt="HTML Certificate">
+                <div class="certificate-body">
+                    <h3>HTML</h3>
+                    <p>Web Development Certificate</p>
+                </div>
+            </div>
+
+            <div class="certificate reveal visible">
+                <img src="https://i.postimg.cc/RVn0W1Rw/536267484-122148581972744101-1737790794430408144-n.jpg" alt="CSS Certificate">
+                <div class="certificate-body">
+                    <h3>CSS</h3>
+                    <p>Web Styling Certificate</p>
+                </div>
+            </div>
+
+            <div class="certificate reveal visible">
+                <img src="https://i.postimg.cc/d3hVmGKZ/726900019-122187225362744101-3083069318509523035-n.jpg" alt="JavaScript Certificate">
+                <div class="certificate-body">
+                    <h3>JavaScript</h3>
+                    <p>Programming Certificate</p>
+                </div>
+            </div>
+
+            <div class="certificate reveal visible">
+                <img src="https://i.postimg.cc/fbvywwKQ/744535291-122189529962744101-7444926253090127721-n.jpg" alt="Full Stack Certificate">
+                <div class="certificate-body">
+                    <h3>Full Stack Web Development</h3>
+                    <p>Development Certificate</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section id="projects">
+    <div class="container">
+
+        <div class="section-head reveal visible">
+            <div class="section-label">04 / PROJECTS</div>
+            <h2 class="section-title">Selected <span class="gradient">Projects.</span></h2>
+            <p class="section-desc">
+                Some of the web applications and systems I have developed.
+                Click any project to open it.
+            </p>
+        </div>
+
+        <div class="projects">
+
+            <a href="https://naderwageh2022-coder.github.io/providbihsoynader/" target="_blank" rel="noopener noreferrer" class="project-link">
+                <div class="project reveal visible">
+                    <div class="project-visual">
+                        <div class="project-symbol">F</div>
+                    </div>
+
+                    <div class="project-body">
+                        <h3>FINOVA</h3>
+                        <p>
+                            Enterprise management platform designed to manage
+                            large companies, operations and business data.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">Enterprise</span>
+                            <span class="tag">Management</span>
+                            <span class="tag">Full Stack</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://naderwageh2022-coder.github.io/bihsoyAIchatbot/" target="_blank" rel="noopener noreferrer" class="project-link">
+                <div class="project reveal visible">
+                    <div class="project-visual">
+                        <div class="project-symbol">AI</div>
+                    </div>
+
+                    <div class="project-body">
+                        <h3>Chat Bot</h3>
+                        <p>
+                            Interactive chatbot application designed to provide
+                            users with fast and intelligent conversations.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">AI</span>
+                            <span class="tag">Web App</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="https://naderwageh2022-coder.github.io/bddvkslc/" target="_blank" rel="noopener noreferrer" class="project-link">
+                <div class="project reveal visible">
+                    <div class="project-visual">
+                        <div class="project-symbol">✓</div>
+                    </div>
+
+                    <div class="project-body">
+                        <h3>Attendance Management System</h3>
+                        <p>
+                            Complete attendance management system for tracking
+                            presence, absence and attendance records.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">Management</span>
+                            <span class="tag">Attendance</span>
+                            <span class="tag">Full Stack</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
+<section id="services">
+    <div class="container">
+
+        <div class="section-head reveal">
+            <div class="section-label">05 / SERVICES</div>
+            <h2 class="section-title">What I <span class="gradient">Build.</span></h2>
+        </div>
+
+        <div class="services">
+
+            <div class="service reveal">
+                <div class="service-icon">💻</div>
+                <h3>Web Development</h3>
+                <p>
+                    Modern and responsive websites built with clean code
+                    and professional interfaces.
+                </p>
+            </div>
+
+            <div class="service reveal">
+                <div class="service-icon">⚙️</div>
+                <h3>Web Applications</h3>
+                <p>
+                    Interactive web applications with powerful functionality
+                    and database integration.
+                </p>
+            </div>
+
+            <div class="service reveal">
+                <div class="service-icon">🚀</div>
+                <h3>Full Stack Solutions</h3>
+                <p>
+                    Complete frontend and backend systems designed for
+                    real-world projects.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section>
+    <div class="container">
+
+        <div class="section-head reveal">
+            <div class="section-label">06 / DEVELOPER</div>
+            <h2 class="section-title">Inside my <span class="gradient">workflow.</span></h2>
+        </div>
+
+        <div class="terminal reveal">
+
+            <div class="terminal-head">
+                <span class="circle"></span>
+                <span class="circle"></span>
+                <span class="circle"></span>
+            </div>
+
+            <div class="terminal-body">
+                <div><span class="prompt">bishoy@developer</span>:~$ <span class="command">whoami</span></div>
+                <div>Full Stack Web Developer</div>
+
+                <br>
+
+                <div><span class="prompt">bishoy@developer</span>:~$ <span class="command">skills</span></div>
+                <div>HTML • CSS • JavaScript • Firebase • Node.js • PHP</div>
+
+                <br>
+
+                <div><span class="prompt">bishoy@developer</span>:~$ <span class="command">status</span></div>
+                <div>Building modern digital experiences...</div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section id="contact">
+    <div class="container">
+
+        <div class="section-head reveal">
+            <div class="section-label">07 / CONTACT</div>
+            <h2 class="section-title">Let's build something <span class="gradient">great.</span></h2>
+            <p class="section-desc">
+                Have a project idea? Let's turn it into a real web experience.
+            </p>
+        </div>
+
+        <div class="contact-grid">
+
+            <div class="contact-card reveal">
+
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div>
+                        <small>WhatsApp</small>
+                        <strong>01276613554</strong>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">💻</div>
+                    <div>
+                        <small>Role</small>
+                        <strong>Full Stack Web Developer</strong>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">🌐</div>
+                    <div>
+                        <small>Specialization</small>
+                        <strong>Web Applications &amp; Systems</strong>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="contact-card reveal">
+                <h3>Start a Project</h3>
+                <p style="margin-top:12px;color:var(--muted);line-height:1.8;">
+                    Contact me directly on WhatsApp and let's discuss your
+                    project, idea or website.
+                </p>
+
+                <div style="margin-top:25px;">
+                    <a href="https://wa.me/201276613554" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="display:inline-block;">
+                        Contact Me on WhatsApp
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+</main>
+
+<a class="whatsapp" href="https://wa.me/201276613554" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+    ☎
+</a>
+
+<footer>
+    <div class="container footer-inner">
+        <div>© 2026 Bishoy Nader. All rights reserved.</div>
+        <div>Full Stack Web Developer</div>
+    </div>
+</footer>
+
+<div class="modal" id="certificateModal">
+    <button class="modal-close" id="modalClose">×</button>
+    <img id="modalImage" src="" alt="Certificate">
+</div>
+
+<script>
+const loader = document.getElementById("loader");
+
+window.addEventListener("load", () => {
+    setTimeout(() => {
+        loader.classList.add("hide");
+    }, 1200);
+});
+
+const themeToggle = document.getElementById("themeToggle");
+
+if(localStorage.getItem("theme") === "light"){
+    document.body.classList.add("light");
+    themeToggle.textContent = "☀";
+}
+
+themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("light");
+
+    if(document.body.classList.contains("light")){
+        localStorage.setItem("theme","light");
+        themeToggle.textContent = "☀";
+    }else{
+        localStorage.setItem("theme","dark");
+        themeToggle.textContent = "☾";
+    }
+});
+
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+menuBtn.addEventListener("click", () => {
+    navLinks.classList.toggle("open");
+});
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+    link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+    });
+});
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add("visible");
+        }
+    });
+},{
+    threshold:.12
+});
+
+document.querySelectorAll(".reveal").forEach(el => {
+    observer.observe(el);
+});
+
+const counters = document.querySelectorAll(".stat-number");
+
+const counterObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+
+        if(!entry.isIntersecting) return;
+
+        const counter = entry.target;
+        const target = Number(counter.dataset.count);
+        let current = 0;
+
+        const update = () => {
+            const increment = Math.max(1, Math.ceil(target / 45));
+            current += increment;
+
+            if(current >= target){
+                counter.textContent = target + (target === 100 ? "%" : "+");
+                return;
+            }
+
+            counter.textContent = current;
+            requestAnimationFrame(update);
+        };
+
+        update();
+        observer.unobserve(counter);
+    });
+},{
+    threshold:.6
+});
+
+counters.forEach(counter => counterObserver.observe(counter));
+
+const certificateModal = document.getElementById("certificateModal");
+const modalImage = document.getElementById("modalImage");
+const modalClose = document.getElementById("modalClose");
+
+document.querySelectorAll(".certificate").forEach(card => {
+
+    card.addEventListener("click", () => {
+
+        const image = card.querySelector("img");
+
+        modalImage.src = image.src;
+        modalImage.alt = image.alt;
+
+        certificateModal.classList.add("show");
+    });
+
+});
+
+modalClose.addEventListener("click", () => {
+    certificateModal.classList.remove("show");
+});
+
+certificateModal.addEventListener("click", event => {
+    if(event.target === certificateModal){
+        certificateModal.classList.remove("show");
+    }
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+
+    link.addEventListener("click", event => {
+
+        const targetId = link.getAttribute("href");
+
+        if(targetId === "#") return;
+
+        const target = document.querySelector(targetId);
+
+        if(target){
+            event.preventDefault();
+
+            target.scrollIntoView({
+                behavior:"smooth"
+            });
+        }
+
+    });
+
+});
+</script>
+
+
+</body></html>
